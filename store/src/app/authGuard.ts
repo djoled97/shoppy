@@ -17,7 +17,7 @@ export class AuthGuard implements CanActivate {
     canActivate() {
         // Check to see if a user has a valid token
         if (this.authService.isAuthenticated()) {
-          
+            
             return true;
            
         }

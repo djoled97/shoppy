@@ -29,12 +29,8 @@ export class ProductsComponent implements OnInit {
     });
   }
 
-  submit(id: string,name:Product,price:Product) {
-    this.productService.addToCart(id).set({
-      name:name,
-      price:price,
-      
-    })
+  submit(id: string,name:string,price:number) {
+    this.productService.addToCart(id,name,price);
     alert("Item added to your cart");
   }
 }

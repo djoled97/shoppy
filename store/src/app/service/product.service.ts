@@ -3,6 +3,7 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/fire
 import { Product } from '../models/Product';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -27,8 +28,12 @@ export class ProductService {
           getCart(){
             return this.db.collection('items');
           }
-          addToCart(id:string){
-            return this.db.collection('cart').doc(id);
+          addToCart(id:string,name:string,price:number){
+            return this.db.collection('cart').doc(id).set({
+              name:name,
+              price:price
+
+            });
           }
          
        

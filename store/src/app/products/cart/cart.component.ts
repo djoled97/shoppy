@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from 'src/app/service/product.service';
 import { Cart } from 'src/app/models/Cart';
 import { CartService } from 'src/app/service/cart.service';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-cart',
@@ -11,14 +12,15 @@ import { CartService } from 'src/app/service/cart.service';
 export class CartComponent implements OnInit {
 
   carts:Cart[];
-  constructor( private cartService :CartService) { 
+  
+  constructor( private cartService :CartService,private db:AngularFirestore) { 
     
   }
 
   ngOnInit() {
     this.cartService.getCart().subscribe(cart=>{
       this.carts=cart;
-     
+      
     });
   }
    delete(id:string){
@@ -28,7 +30,8 @@ export class CartComponent implements OnInit {
     
    }
    buy(){
-     
+    
+
    }
 
   }

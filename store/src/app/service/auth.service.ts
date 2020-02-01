@@ -7,6 +7,7 @@ import { ThrowStmt } from '@angular/compiler';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from '../models/User';
 import { map } from 'rxjs/operators';
+import { CartService } from './cart.service';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,7 @@ export class AuthService {
 
   user: Observable<User[]>;
   constructor(
+    private cartService:CartService,
     private afAuth: AngularFireAuth,
     private db: AngularFirestore,
     private router: Router) {
@@ -46,14 +48,16 @@ export class AuthService {
       })
       .then(userCredential => {
         if (userCredential) {
-          this.setSessionStorage();
+           this.setSessionStorage();
           this.router.navigate(['./products']);
           
 
 
         }
       })
-
+      .finally(()=>{
+        
+      })
   }
   getUser() {
     return this.user;
@@ -92,6 +96,7 @@ export class AuthService {
   logout() {
     sessionStorage.removeItem('key');
     this.router.navigate(['/signin']);
+  
     return this.afAuth.auth.signOut();
 
   }
