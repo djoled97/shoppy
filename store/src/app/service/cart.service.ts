@@ -15,6 +15,7 @@ export class CartService {
       return changes.map(a=>{
         const data = a.payload.doc.data() as Cart
         data.id = a.payload.doc.id;
+        
         return data;
       });
     }));
@@ -33,4 +34,14 @@ deleteFromCart(id:string){
     console.error("Error removing document: ", error);
 });
 }
-}
+order(){
+//   db.collection("cities").get().then(function(querySnapshot) {
+//     querySnapshot.forEach(function(doc) {
+//         // doc.data() is never undefined for query doc snapshots
+//         console.log(doc.id, " => ", doc.data());
+//     });
+// });
+  
+// }
+
+}}

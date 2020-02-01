@@ -10,23 +10,29 @@ import { AdminProductsComponent } from './admin/admin-products/admin-products.co
 import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ResetPassComponent } from './reset-pass/reset-pass.component';
+import { AuthGuard } from './authGuard';
 
 
 const routes: Routes = [
-  { path: '', component: SignInComponent},
-   {path:'profile',component:ProfileComponent},
-       {path:'resetpass',component:ResetPassComponent},
-         
-         { path: 'signin', component: SignInComponent},
-         { path: 'signup', component: SignUpComponent},
-       
-   
-   { path: 'products', component: ProductsComponent,
+  // { path: '', component: SignInComponent },
+  { path: 'resetpass', component: ResetPassComponent },
+  { path: 'signin', component: SignInComponent },
+  { path: '', redirectTo:'signin',pathMatch:'full' },
+  { path: 'signup', component: SignUpComponent },
+  {path:'',canActivate:[AuthGuard],children:[
+  { path: 'profile', component: ProfileComponent },
+  {
+    path: 'products',  component: ProductsComponent,
   },
-         { path: 'cart', component: CartComponent }   ,  
-   
- 
-  ];
+  { path: 'cart', component: CartComponent },
+
+
+
+
+
+]}
+
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

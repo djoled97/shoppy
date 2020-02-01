@@ -4,6 +4,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { ProductService } from '../service/product.service';
 import { Product } from '../models/Product';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { AuthService } from '../service/auth.service';
 
 @Component({
   selector: 'app-products',
@@ -17,12 +18,12 @@ export class ProductsComponent implements OnInit {
 
 
   constructor(db: AngularFirestore,
-    private productService: ProductService,private afAuth:AngularFireAuth) {
-    
+    private productService: ProductService,private afAuth:AngularFireAuth,private auth:AuthService) {
+    this.auth.setSessionStorage();
   }
 
   ngOnInit() {
-  
+    
     this.productService.getProduct().subscribe(products => {
       this.products = products
     });

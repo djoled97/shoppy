@@ -27,4 +27,8 @@ export class CartComponent implements OnInit {
     }
     
    }
-}
+   buy(){
+     
+   }
+
+  }

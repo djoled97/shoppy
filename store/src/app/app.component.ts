@@ -15,6 +15,7 @@ export class AppComponent {
     
       this.auth.getUserState().subscribe(user =>{
         this.user=user;
+        
       })  
   }
     

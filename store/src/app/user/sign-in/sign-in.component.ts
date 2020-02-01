@@ -9,11 +9,11 @@ import { AppComponent } from 'src/app/app.component';
 export class SignInComponent implements OnInit {
 
   loggedIn: boolean;
-
+  
   authError: any;
 
   constructor(private auth: AuthService) { 
-    
+   
   }
 
   ngOnInit() {
@@ -24,8 +24,10 @@ export class SignInComponent implements OnInit {
   }
 
   login(frm) {
+    
+    
     this.auth.login(frm.value.email, frm.value.password)
     
-    ;
+    
   }
 }
