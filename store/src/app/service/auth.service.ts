@@ -95,8 +95,7 @@ export class AuthService {
   }
 
   logout() {
-    sessionStorage.removeItem('key');
-    this.router.navigate(['/signin']);
+    
   
     return this.afAuth.auth.signOut();
 

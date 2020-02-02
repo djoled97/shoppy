@@ -19,13 +19,14 @@ export class CartComponent implements OnInit {
   sub: any;
   name: any;
   lastName: any;
-
+  display:boolean=true;
+  
   constructor(private cartService: CartService, private db: AngularFirestore, private auth: AuthService, private afAuth: AngularFireAuth) {
     this.auth.getUserState().subscribe(user => {
       this.user = user
       
     })
-
+    
  
   }
 
@@ -35,20 +36,27 @@ export class CartComponent implements OnInit {
       this.mainUser = this.db.doc(`Users/${this.user.uid}`);
       this.sub = this.mainUser.valueChanges().subscribe(event => {
         this.name = event.firstname,
-          this.lastName = event.lastname
-          
-      })
+          this.lastName = event.lastname  
     });
+             
+      })
+    
     
   }
   delete(id: string) {
     if (confirm("This will remove your item from cart")) {
       this.cartService.deleteFromCart(id);
+      
+      
     }
 
   }
   buy() {
-    this.cartService.moveToHistory(this.user.uid, this.lastName);
+    this.display=false;
+    this.cartService.moveToHistory( this.lastName);
+    this.cartService.deleteCart();
+    alert("Your order is complete")
+    
 
   }
 

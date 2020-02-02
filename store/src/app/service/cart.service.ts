@@ -14,11 +14,12 @@ import { templateJitUrl } from '@angular/compiler';
 export class CartService {
   cartCollection: AngularFirestoreCollection<Cart>
   cart: Observable<Cart[]>;
-  price: any[];
-  name: any[];
+  price: any=[];
+  name: any=[];
+  ID:any[];
   num=null;
   authUser = this.afAuth.auth.currentUser;
-  date: any;
+  date:any= new Date().toString();
   constructor(private db: AngularFirestore, private afAuth: AngularFireAuth) {
     
     this.cart = this.db.collection('cart').snapshotChanges().pipe(map(changes => {
@@ -61,30 +62,49 @@ export class CartService {
     this.db.collection('cart').get().toPromise().then(res => {
       res.forEach(element => {
         element.ref.delete();
+        
       })
     })
-  }
-
-  moveToHistory(id: string, name: string) {
-    { this.db.collection('cart').get().toPromise().then(res => {
-      res.forEach(element => {
-        
-         this.date=new Date().toString()
-        this.price = [element.get('price')];
-        this.name = [element.get('name')];
-        
-          this.db.collection(`history${name}`).doc(this.date).set({
-            date: new Date(),
-            name: this.price,
-            price: [element.get('price')],
-            status: 'completed'
-          })
-      })
-
-    })}
    
-
-
   }
 
+  moveToHistory( name: string) {
+    let ID:string[];
+     this.db.collection('cart').get().toPromise().then(res => {
+      res.forEach(element => {
+
+            
+         
+        
+           this.price.push(element.get('price'));
+           this.name.push( element.get('name'));    
+          
+        
+           
+      
+        
+      //  console.log(this.price)
+      })
+      this.db.collection(`history${name}`).doc(this.date).set(
+        
+          
+        { 
+           name: this.name, price: this.price,status: 'completed',  
+          date: new Date()  }
+  
+        
+         
+      )})
+     
+      
+        
+        
+    
+   
+   
+  
+
+  
+  }
+  
 }

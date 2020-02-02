@@ -10,9 +10,10 @@
            
   <img class="w-50 img " src="{{product.url}}"/> <br>
   <!-- <input type="number" [(ngModel)]="num"> -->
-  <button class="btn btn-primary"(click)="submit(product.id,product.name,product.price)" >{{product.price }}</button> 
-     
+  <button class="btn btn-primary"(click)="submit(product.id,product.name,product.price,num)" >{{product.price }}</button> 
+  <input  type="number" [(ngModel)]="num" name="num" id="" >
     </div>
+   
     <!-- <div class="col-sm">
       <h1>{{ product.name }}</h1>
            
@@ -27,7 +28,7 @@
     </div> -->
   </div>
 
-      
+  
         
        <router-outlet></router-outlet>
 

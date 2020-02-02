@@ -10,22 +10,28 @@ import { AngularFireAuth } from '@angular/fire/auth';
 export class AppComponent {
   title = 'store';
 
- user=this.afAuth.auth.currentUser;
-  constructor( private auth:AuthService, private router: Router, private afAuth: AngularFireAuth ){
-    
-      this.auth.getUserState().subscribe(user =>{
-        this.user=user;
-        
-      })  
+  user = this.afAuth.auth.currentUser;
+  constructor(private auth: AuthService, private router: Router, private afAuth: AngularFireAuth) {
+
+    this.auth.getUserState().subscribe(user => {
+      this.user = user;
+
+    })
   }
-    
-  logout(){
-    if(confirm("Are you sure you want to log out?"))
-    
-    this.auth.logout();
-    
-  // }
-  //  signin(){
-     
-  //  }
-}}
+
+  logout() {
+    if (confirm("Are you sure you want to log out?") == true) {
+      sessionStorage.removeItem('key');
+      this.router.navigate(['/signin']);
+      this.auth.logout();
+      return true
+    } else {
+      return false;
+    }
+
+    // }
+    //  signin(){
+
+    //  }
+  }
+}
