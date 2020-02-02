@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from 'src/app/service/product.service';
 import { Cart } from 'src/app/models/Cart';
 import { CartService } from 'src/app/service/cart.service';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { AuthService } from 'src/app/service/auth.service';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-cart',
@@ -11,27 +13,43 @@ import { AngularFirestore } from '@angular/fire/firestore';
 })
 export class CartComponent implements OnInit {
 
-  carts:Cart[];
-  
-  constructor( private cartService :CartService,private db:AngularFirestore) { 
-    
+  carts: Cart[];
+  user = this.afAuth.auth.currentUser;
+  mainUser: AngularFirestoreDocument;
+  sub: any;
+  name: any;
+  lastName: any;
+
+  constructor(private cartService: CartService, private db: AngularFirestore, private auth: AuthService, private afAuth: AngularFireAuth) {
+    this.auth.getUserState().subscribe(user => {
+      this.user = user
+      
+    })
+
+ 
   }
 
   ngOnInit() {
-    this.cartService.getCart().subscribe(cart=>{
-      this.carts=cart;
-      
+    this.cartService.getCart().subscribe(cart => {
+      this.carts = cart;
+      this.mainUser = this.db.doc(`Users/${this.user.uid}`);
+      this.sub = this.mainUser.valueChanges().subscribe(event => {
+        this.name = event.firstname,
+          this.lastName = event.lastname
+          
+      })
     });
+    
   }
-   delete(id:string){
-    if(confirm("This will remove your item from cart")) {
+  delete(id: string) {
+    if (confirm("This will remove your item from cart")) {
       this.cartService.deleteFromCart(id);
     }
-    
-   }
-   buy(){
-    
-
-   }
 
   }
+  buy() {
+    this.cartService.moveToHistory(this.user.uid, this.lastName);
+
+  }
+
+}

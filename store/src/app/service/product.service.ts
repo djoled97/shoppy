@@ -10,6 +10,7 @@ import { map } from 'rxjs/operators';
 export class ProductService {
     productCollection:AngularFirestoreCollection<Product>
     products:Observable<Product[]>;
+    num=0;
     constructor(private db:AngularFirestore) {
         this.products = this.db.collection('items').snapshotChanges().pipe(map(changes => {
             return changes.map(a=>{
@@ -31,8 +32,8 @@ export class ProductService {
           addToCart(id:string,name:string,price:number){
             return this.db.collection('cart').doc(id).set({
               name:name,
-              price:price
-
+              price:price,
+              num:this.num++
             });
           }
          

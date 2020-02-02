@@ -90,6 +90,7 @@ export class AuthService {
       phone: this.newUser.phone,
       address: this.newUser.address,
       role: 'network user'
+      
     })
   }
 
