@@ -2,3 +2,9 @@ img {
     width:100px; 
     height: 145px;
 }
+.btn{
+    width: 30%;
+    margin-top: 5%;
+    position: absolute;
+    left: 10%;
+}

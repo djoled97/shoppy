@@ -11,6 +11,7 @@ import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ResetPassComponent } from './reset-pass/reset-pass.component';
 import { AuthGuard } from './authGuard';
+import { HistoryComponent } from './history/history.component';
 
 
 const routes: Routes = [
@@ -23,7 +24,7 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent },
   {
     path: 'products',  component: ProductsComponent,
-  },
+  },{ path: 'history', component: HistoryComponent},
   { path: 'cart', component: CartComponent },
 
 

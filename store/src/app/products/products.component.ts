@@ -31,7 +31,7 @@ export class ProductsComponent implements OnInit {
 
   submit(id: string,name:string,price:number) {
     this.productService.addToCart(id,name,price);
-    console.log(this.num);
+  
     alert("Item added to your cart");
   }
 }

@@ -22,6 +22,7 @@ import { ProductService } from './service/product.service';
 import { ProfileComponent } from './profile/profile.component';
 import { ResetPassComponent } from './reset-pass/reset-pass.component';
 import { AuthGuard } from './authGuard';
+import { HistoryComponent } from './history/history.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,6 +36,7 @@ import { AuthGuard } from './authGuard';
     SignUpComponent,
     ProfileComponent,
     ResetPassComponent,
+    HistoryComponent,
     
   ],
   imports: [
