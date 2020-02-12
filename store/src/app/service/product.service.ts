@@ -35,8 +35,21 @@ export class ProductService {
               price:price,
               num:this.num++
             });
+          } 
+          search(name:string,products:Product[]){
+            this.db.collection('items',ref=> ref.where('name', '==', name)).get().toPromise().then((snapshot)=>{
+              snapshot.docs.forEach(doc =>{
+                
+                   const data= doc.data() as Product
+                   data.id=doc.id;
+                   products.push(data);
+              })
+              
+            })
+           
           }
-         
+
+        
        
 
 

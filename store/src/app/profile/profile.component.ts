@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { User } from '../models/User';
 import { AuthService } from '../service/auth.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 
@@ -21,7 +22,8 @@ export class ProfileComponent implements OnInit {
 email:string;
  mainUser:AngularFirestoreDocument;
  sub:any;
-  constructor(private afAuth: AngularFireAuth,private auth:AuthService,private db:AngularFirestore,private router:Router) { 
+  constructor(private afAuth: AngularFireAuth,private auth:AuthService,private db:AngularFirestore,private router:Router
+    ,private spinner: NgxSpinnerService) { 
     this.mainUser = db.doc(`Users/${this.authUser.uid}`);
     this.sub = this.mainUser.valueChanges().subscribe(event => {
       this.name = event.firstname,
@@ -37,9 +39,11 @@ email:string;
   ngOnInit() {
     // if(this.authUser!=null){
     // this.name=this.authUser.displayName;
-     
-    
-     
+    document.body.classList.add('bg-img2');
+    this.spinner.show();
+    setTimeout(() => {
+      this.spinner.hide();
+    }, 1000);   
     // }
 
   }
@@ -57,7 +61,13 @@ email:string;
     
     ).then(()=>{
       this.authUser.updateEmail(this.email);
-      // location.reload();
+      
+    }).finally(()=>{
+      
+      this.spinner.show();
+    setTimeout(() => {
+      this.spinner.hide();
+    }, 1500);
     })
     
     }

@@ -4,7 +4,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { ThrowStmt } from '@angular/compiler';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, pipe } from 'rxjs';
 import { User } from '../models/User';
 import { map } from 'rxjs/operators';
 import { CartService } from './cart.service';
@@ -41,23 +41,23 @@ export class AuthService {
   }
 
   login(email: string, password: string) {
-
+      
     this.afAuth.auth.signInWithEmailAndPassword(email, password)
       .catch(error => {
         this.eventAuthError.next(error);
+        
       })
       .then(userCredential => {
         if (userCredential) {
-           this.setSessionStorage();
-          this.router.navigate(['./products']);
+            this.setSessionStorage();
+          
           
 
 
         }
       })
-      .finally(()=>{
-        
-      })
+      
+      
   }
   getUser() {
     return this.user;
@@ -119,7 +119,9 @@ export class AuthService {
     
     let token = sessionStorage.getItem('key');
     if (token) {
+     
       return true;
+      
     } else {
       return false;
     }
@@ -129,12 +131,13 @@ export class AuthService {
     this.afAuth.auth.onAuthStateChanged(function (user) {
       if (user) {
         user.getIdToken().then(function (data) {
+         
           sessionStorage.setItem('key', data);
           
         });
       }
 
     });
-    
+   
   }
 }

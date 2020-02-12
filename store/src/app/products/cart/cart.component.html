@@ -1,8 +1,8 @@
-<ul class="list-group" *ngFor="let cart of carts ">
+<ul class="list-group w3-animate-opacity" *ngFor="let cart of carts ">
    <li class="list-group-item"> <h4>{{cart.name}} </h4> <h4 class="price">{{cart.price}}$</h4><button class="float-right btn btn-primary"  (click)="delete(cart.id)"><i class="fa fa-trash" aria-hidden="true"></i></button> </li>
    
   
   
 </ul>
 
-<div class="b"><button  class=" bt btn btn-primary" (click)="buy()">Buy</button></div>
+<div class="b "><button  class=" bt btn btn-primary" (click)="buy()">Buy</button></div>

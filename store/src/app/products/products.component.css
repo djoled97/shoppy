@@ -1,10 +1,36 @@
 img {
-    width:100px; 
-    height: 145px;
+    width:200px; 
+    height: 200px;
 }
-.btn{
-    width: 30%;
-    margin-top: 5%;
+.b{
+    width: 100px;
+    margin-top: 8%;
     position: absolute;
-    left: 10%;
+    left:20%;
+}
+.b1{
+   width: 100px;
+  
+}
+.center {
+    text-align: center;
+    margin: auto;
+}
+h1{
+    position: relative;
+    left:30px
+}
+.search{
+    width:300px;
+    position: relative;
+    left:39%;
+}
+.search2{
+    position: relative;
+    left:39%;
+    width: 300px;
+}
+.h12{
+    
+    left:30px
 }

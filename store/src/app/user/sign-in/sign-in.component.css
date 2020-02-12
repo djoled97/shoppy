@@ -9,4 +9,8 @@
         margin:auto;
        
     };
+   .ima{
+        height:min-content;
+        width: min-content;
+   }
    

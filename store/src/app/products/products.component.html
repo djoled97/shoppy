@@ -2,34 +2,59 @@
 
     
  
-        
-
-  <div class="row " >  
-    <div class="col-sm" *ngFor="let product of products ">
-      <h1>{{ product.name }}</h1>
+  <div *ngIf="!searched">  
+      <div class="input-group mb-3  pt-5 search " >
+          <div class="input-group-prepend">
+            <button class="btn btn-outline-secondary" type="button" (click)="search()"><i class="fa fa-search" aria-hidden="true"></i></button>
+          </div>
+          <input type="text " [(ngModel)]="name" class="form-control center">
+        </div>
+  <div class="row pt-5 " >
+    <div class="col-sm w3-animate-opacity " *ngFor="let product of products ">
+      <h1 class="">{{ product.name }}</h1>
            
-  <img class="w-50 img " src="{{product.url}}"/> <br>
-  <!-- <input type="number" [(ngModel)]="num"> -->
-  <button class="btn btn-primary"(click)="submit(product.id,product.name,product.price,num)" >{{product.price }}</button> 
-  <!-- <input  type="number" [(ngModel)]="num" name="num" id="" > -->
+  <img class=" img " src="{{product.url}}"/> <br>
+ 
+  <button class=" b btn btn-primary"(click)="submit(product.id,product.name,product.price,num)" >{{product.price }} $</button> 
+  
+      
+
     </div>
    
-    <!-- <div class="col-sm">
-      <h1>{{ product.name }}</h1>
-           
-  <img class="w-100" src="{{product.url}}"/> <br>
-<button class="btn btn-primary">{{product.price }}</button> 
-    </div> -->
-    <!-- <div class="col-sm">
-      <h1>{{ product.name }}</h1>
-           
-      <img class="w-100 " src="{{product.url}}"/> <br>
-    <button class="btn btn-primary">{{product.price }}</button> 
-    </div> -->
+  
+    
   </div>
+  
+
 
   
+  </div>
+  <div *ngIf="searched" >
+      <div class="input-group mb-3  pt-5    search2" >
+          <div class="input-group-prepend">
+            <button class="btn btn-outline-secondary" type="button" (click)="search()"><i class="fa fa-search" aria-hidden="true"></i></button>
+          </div>
+          <input type="text " [(ngModel)]="name" class="form-control center">
+        </div>  
+    
+    
+    <div class="row center " >
+          <div class="col-sm w3-animate-opacity center" *ngFor="let product of products ">
+            <h1 class="center h12">{{ product.name }}</h1>
+                 
+        <img class="img center" src="{{product.url}}"/> <br>
+            
+        <button class=" b1 btn btn-primary center mt-2"(click)="submit(product.id,product.name,product.price,num)" >{{product.price }} $</button> 
         
+            
+      
+          </div>
+         
+      
+          
+        </div>
+    
+  </div>
        <router-outlet></router-outlet>
 
 

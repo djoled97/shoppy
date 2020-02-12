@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.bg-img{
+    background-image: url("https://i.ibb.co/MMm2Bjj/chef-1417239-1280.png");
+    background-position: center;
+   background-size: 1500px 700px;
+    background-repeat: no-repeat; 
+}
+.bg-img2{
+    background-image: url("https://i.ibb.co/MNgh82d/wood-2142241.jpg");
+    background-repeat: no-repeat; 
+    background-size: 1600px 950px;
+}

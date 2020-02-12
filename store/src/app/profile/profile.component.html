@@ -1,7 +1,7 @@
 
 <form  (ngSubmit)="submit()">
      
-  <div class="form-row"  >
+  <div class="form-row w3-animate-opacity"  >
        
     <div class="col-md-4 mb-3" >
         <label for="name">Name</label>
@@ -12,11 +12,11 @@
     
       <div class="col-md-4 mb-3">
         <label for="lastname">Surname</label>
-        <input [(ngModel)]="lastName" name="lastName" type="text" class="form-control" id="lastName" value="lastName">
+        <input [(ngModel)]="lastName" name="lastName" type="text" class="form-control " id="lastName" value="lastName">
       </div>
       <div class="col-md-4 mb-3" >
         <label for="phone">Phone</label>
-        <input [(ngModel)]="phone" name="phone" type="text" class="form-control" id="phone" value="phone" >
+        <input [(ngModel)]="phone" name="phone" type="text" class="form-control " id="phone" value="phone" >
         
       </div>
       <div class="col-md-6 mb-4" >
@@ -32,3 +32,4 @@
     </div>
     <div class="text-center"><button   class="btn btn-info w-25" type="submit"> Edit</button></div> 
   </form>
+  <ngx-spinner></ngx-spinner>

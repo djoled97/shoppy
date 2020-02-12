@@ -14,18 +14,23 @@ import { AuthService } from '../service/auth.service';
 export class ProductsComponent implements OnInit {
   products: Product[];
   num:number;
-  
-
-
-  constructor(db: AngularFirestore,
+  display: any = {};
+  name:any
+  searched:boolean=false;
+  constructor(private db: AngularFirestore,
+    
     private productService: ProductService,private afAuth:AngularFireAuth,private auth:AuthService) {
     this.auth.setSessionStorage();
+   
   }
 
+
   ngOnInit() {
-    
+      
+    document.body.classList.add('bg-img2');
     this.productService.getProduct().subscribe(products => {
       this.products = products
+      
     });
   }
 
@@ -34,5 +39,13 @@ export class ProductsComponent implements OnInit {
   
     alert("Item added to your cart");
   }
+  search(){
+    this.products=[];
+    this.productService.search(this.name,this.products);
+    
+    return this.searched=true;
+  }
+  
+
 }
 

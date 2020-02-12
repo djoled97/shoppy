@@ -15,16 +15,16 @@ export class AuthGuard implements CanActivate {
         }
 
     canActivate() {
-        // Check to see if a user has a valid token
+      
         if (this.authService.isAuthenticated()) {
             
-            return true;
+            return true 
            
         }
 
-        // If not, they redirect them to the login page
+        
         this.router.navigate(['./signin']);
-        return false;}
+        return false;} 
     }
 
 
