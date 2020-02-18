@@ -34,3 +34,10 @@ h1{
     
     left:30px
 }
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
+.cmargin{
+    margin-bottom: 60px;
+}

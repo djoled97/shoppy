@@ -40,6 +40,7 @@ export class ProductsComponent implements OnInit {
     alert("Item added to your cart");
   }
   search(){
+      
     this.products=[];
     this.productService.search(this.name,this.products);
     

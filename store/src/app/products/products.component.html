@@ -3,36 +3,47 @@
     
  
   <div *ngIf="!searched">  
-      <div class="input-group mb-3  pt-5 search " >
-          <div class="input-group-prepend">
+    
+    <div class="input-group mb-3  pt-5 search w3-animate-opacity  " >
+          <div class="input-group-prepend ">
             <button class="btn btn-outline-secondary" type="button" (click)="search()"><i class="fa fa-search" aria-hidden="true"></i></button>
           </div>
-          <input type="text " [(ngModel)]="name" class="form-control center">
+          <input type="text " [(ngModel)]="name" class="form-control center ">
         </div>
+        
   <div class="row pt-5 " >
-    <div class="col-sm w3-animate-opacity " *ngFor="let product of products ">
-      <h1 class="">{{ product.name }}</h1>
+    <div class="col-sm-2 cmargin w3-animate-opacity " *ngFor="let product of products;let i=index ">
+      
+        <h1 class="">{{ product.name }}</h1>
            
-  <img class=" img " src="{{product.url}}"/> <br>
- 
-  <button class=" b btn btn-primary"(click)="submit(product.id,product.name,product.price,num)" >{{product.price }} $</button> 
-  
+        <img class=" img " src="{{product.url}}"/> <br>
+       
+        <button class=" b btn btn-primary"(click)="submit(product.id,product.name,product.price,num)" >{{product.price }} $</button> 
+        
+            
+      </div>
       
 
-    </div>
+      
    
   
     
   </div>
+  
+  
+   
+  
+    
   
 
 
   
   </div>
   <div *ngIf="searched" >
-      <div class="input-group mb-3  pt-5    search2" >
-          <div class="input-group-prepend">
-            <button class="btn btn-outline-secondary" type="button" (click)="search()"><i class="fa fa-search" aria-hidden="true"></i></button>
+    
+    <div class="input-group mb-3  pt-5    search2  "  >
+          <div class="input-group-prepend  " >
+            <button class="btn btn-outline-secondary " type="button" (click)="search()"><i class="fa fa-search" aria-hidden="true"></i></button>
           </div>
           <input type="text " [(ngModel)]="name" class="form-control center">
         </div>  

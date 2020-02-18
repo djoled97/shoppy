@@ -43,6 +43,7 @@ export class ProductService {
                    const data= doc.data() as Product
                    data.id=doc.id;
                    products.push(data);
+                   
               })
               
             })
